@@ -12,7 +12,15 @@ const budgetController = (function() {
 
 const UIController = (function() {
 
-
+    return {
+        getInput: function() {
+            return {
+                type: document.getElementsByClassName('.add__type').nodeValue, // Will be either inc or exp
+                description: document.getElementsByClassName('add__description').value,
+                value: document.getElementsByClassName('.add__value').value
+            };
+        }
+    };
 
 })();
 
@@ -22,9 +30,11 @@ const UIController = (function() {
 
 const controller = (function(budgetCtrl, UICtrl) {
 
-    const ctrlAddItem = function() {
+    let ctrlAddItem = function() {
 
         // 1. Get the field input data
+        let input = UICtrl.getInput();
+        console.log(input);
 
         // 2. Add the item to the budget controller
 
@@ -33,7 +43,7 @@ const controller = (function(budgetCtrl, UICtrl) {
         // 4. Calculate the budget
 
         // 5. Display the budget on the UI
-        
+
     }
 
     document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
